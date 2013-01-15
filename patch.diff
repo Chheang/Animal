@@ -1,0 +1,1527 @@
+From c7ad91e5daf79916516f2b0e547453d50ddc35f3 Mon Sep 17 00:00:00 2001
+From: Chheang <chheang.oeng@gmail.com>
+Date: Tue, 15 Jan 2013 21:37:59 +0700
+Subject: [PATCH] =?UTF-8?q?Animal=20est=E2=80=A6=3F?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ KindAnimal/Aigle.java             |   35 ++++++
+ KindAnimal/Autruche.java          |   39 ++++++
+ KindAnimal/Girafe.java            |   39 ++++++
+ KindAnimal/Guepard.java           |   38 ++++++
+ KindAnimal/Pingouin.java          |   37 ++++++
+ KindAnimal/Tigre.java             |   40 ++++++
+ KindAnimal/Zebre.java             |   34 +++++
+ KindAnimal/main.java              |   65 ++++++++++
+ animal/Animal.java                |   13 ++
+ animal/carnivore/Carnivore.java   |   47 +++++++
+ animal/mammifere/Mammifere.java   |   43 +++++++
+ animal/mammifere/Ongule.java      |   45 +++++++
+ animal/oiseau/Oiseau.java         |   47 +++++++
+ animal/properties/properties.java |  240 +++++++++++++++++++++++++++++++++++++
+ gui/Animal.form                   |  123 +++++++++++++++++++
+ gui/Animal.java                   |  169 ++++++++++++++++++++++++++
+ gui/AnimalGame.form               |   28 +++++
+ gui/AnimalGame.java               |   46 +++++++
+ gui/Interface.java                |  188 +++++++++++++++++++++++++++++
+ question/question.java            |   37 ++++++
+ 20 files changed, 1353 insertions(+), 0 deletions(-)
+ create mode 100644 KindAnimal/Aigle.java
+ create mode 100644 KindAnimal/Autruche.java
+ create mode 100644 KindAnimal/Girafe.java
+ create mode 100644 KindAnimal/Guepard.java
+ create mode 100644 KindAnimal/Pingouin.java
+ create mode 100644 KindAnimal/Tigre.java
+ create mode 100644 KindAnimal/Zebre.java
+ create mode 100644 KindAnimal/main.java
+ create mode 100644 animal/Animal.java
+ create mode 100644 animal/carnivore/Carnivore.java
+ create mode 100644 animal/mammifere/Mammifere.java
+ create mode 100644 animal/mammifere/Ongule.java
+ create mode 100644 animal/oiseau/Oiseau.java
+ create mode 100644 animal/properties/properties.java
+ create mode 100644 gui/Animal.form
+ create mode 100644 gui/Animal.java
+ create mode 100644 gui/AnimalGame.form
+ create mode 100644 gui/AnimalGame.java
+ create mode 100644 gui/Interface.java
+ create mode 100644 question/question.java
+
+diff --git a/KindAnimal/Aigle.java b/KindAnimal/Aigle.java
+new file mode 100644
+index 0000000..63328f2
+--- /dev/null
++++ b/KindAnimal/Aigle.java
+@@ -0,0 +1,35 @@
++package KindAnimal;
++
++import animal.carnivore.Carnivore;
++import animal.oiseau.Oiseau;
++import animal.properties.properties;
++
++public class Aigle {
++
++    public boolean isAigle() {
++        if (propertyIsTrue()
++                && Oiseau.isOiseau(Oiseau.reponse_est_oiseau, Oiseau.est_oiseau)
++                && Carnivore.isCarnivore(Carnivore.reponse_est_carnivore, Carnivore.est_carnivore)) {
++            return true;
++        }
++        return false;
++    }
++
++    public boolean propertyIsTrue() {
++        System.out.println("********** Animal est Aigle? **********");
++        if ((Oiseau.reponse_est_oiseau && !Oiseau.est_oiseau)
++                || (Carnivore.reponse_est_carnivore && !Carnivore.est_carnivore)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Aninal est Aigle?");
++        boolean isAigle;
++        Aigle aigle = new Aigle();
++        isAigle = aigle.isAigle();
++        System.out.println("Aigle is " + isAigle);
++
++    }
++}
+diff --git a/KindAnimal/Autruche.java b/KindAnimal/Autruche.java
+new file mode 100644
+index 0000000..27ae45f
+--- /dev/null
++++ b/KindAnimal/Autruche.java
+@@ -0,0 +1,39 @@
++package KindAnimal;
++
++import animal.oiseau.Oiseau;
++import animal.properties.properties;
++
++public class Autruche {
++
++    public boolean isAutruche() {
++        if (propertyIsTrue()
++                && Oiseau.isOiseau(Oiseau.reponse_est_oiseau, Oiseau.est_oiseau)
++                && !properties.vole(properties.reponse_vole, !properties.vole)
++                && properties.aLongCou(properties.reponse_a_long_cou, properties.a_long_cou)
++                && properties.aLonguesPattes(properties.reponse_a_longues_pattes, properties.a_longues_pattes)
++                && properties.estNoirEtBlanc(properties.reponse_est_noir_et_blanc, properties.est_noir_et_blanc)) {
++            return true;
++        }
++        return false;
++    }
++
++    public boolean propertyIsTrue() {
++        System.out.println("********** Animal est Autruche? **********");
++        if ((Oiseau.reponse_est_oiseau && !Oiseau.est_oiseau)
++                || (properties.reponse_vole && properties.vole)
++                || (properties.reponse_a_long_cou && !properties.a_long_cou)
++                || (properties.reponse_a_longues_pattes && !properties.a_longues_pattes)
++                || (properties.reponse_est_noir_et_blanc && !properties.est_noir_et_blanc)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Aninal est Autruche?");
++        boolean isAutruche;
++        Autruche autruche = new Autruche();
++        isAutruche = autruche.isAutruche();
++        System.out.println("Autruche is " + isAutruche);
++    }
++}
+diff --git a/KindAnimal/Girafe.java b/KindAnimal/Girafe.java
+new file mode 100644
+index 0000000..04b688c
+--- /dev/null
++++ b/KindAnimal/Girafe.java
+@@ -0,0 +1,39 @@
++package KindAnimal;
++
++import animal.mammifere.Ongule;
++import animal.properties.properties;
++
++public class Girafe {
++
++    public boolean isGirafe() {
++        if (propertyIsTrue()
++                && Ongule.isOngule(Ongule.reponse_est_ongule, Ongule.est_ongule)
++                && properties.aLongCou(properties.reponse_a_long_cou, properties.a_long_cou)
++                && properties.aLonguesPattes(properties.reponse_a_longues_pattes, properties.a_longues_pattes)
++                && properties.aTachesSombres(properties.reponse_a_taches_sombres, properties.a_taches_sombres)
++            ) {
++            return true;
++        }
++        return false;
++    }
++
++    public boolean propertyIsTrue() {
++        System.out.println("********** Animal est Girafe? **********");
++        if ((Ongule.reponse_est_ongule && !Ongule.est_ongule)
++                || (properties.reponse_a_long_cou && !properties.a_long_cou)
++                || (properties.reponse_a_longues_pattes && !properties.a_longues_pattes)
++                || (properties.reponse_a_taches_sombres && !properties.a_taches_sombres)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Animal est Girafe?");
++        boolean isGirafe;
++        Girafe girafe = new Girafe();
++        isGirafe = girafe.isGirafe();
++        System.out.println("Girafe is " + isGirafe);
++
++    }
++}
+diff --git a/KindAnimal/Guepard.java b/KindAnimal/Guepard.java
+new file mode 100644
+index 0000000..dcc2641
+--- /dev/null
++++ b/KindAnimal/Guepard.java
+@@ -0,0 +1,38 @@
++package KindAnimal;
++
++import animal.carnivore.Carnivore;
++import animal.mammifere.Mammifere;
++import animal.properties.properties;
++
++public class Guepard {
++
++    public boolean isGepard() {
++        if (propertyIsTrue()
++                && Mammifere.isMammifere(Mammifere.reponse_est_mammifere, Mammifere.est_mammifere)
++                && Carnivore.isCarnivore(Carnivore.reponse_est_carnivore, Carnivore.est_carnivore)
++                && properties.aCouleurBrune(properties.reponse_a_couleur_brune, properties.a_couleur_brune)
++                && properties.aTachesSombres(properties.reponse_a_taches_sombres, properties.a_taches_sombres)) {
++            return true;
++        }
++        return false;
++    }
++
++    public boolean propertyIsTrue() {
++        System.out.println("********** Aninal est Guepard? **********");
++        if ((Mammifere.reponse_est_mammifere && !Mammifere.est_mammifere)
++                || (Carnivore.reponse_est_carnivore && !Carnivore.est_carnivore)
++                || (properties.reponse_a_couleur_brune && !properties.a_couleur_brune)
++                || (properties.reponse_a_taches_sombres && !properties.a_taches_sombres)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Aninal est Guepard?");
++        boolean isGepard;
++        Guepard guepard = new Guepard();
++        isGepard = guepard.isGepard();
++        System.out.println("Guepard is " + isGepard);
++    }
++}
+diff --git a/KindAnimal/Pingouin.java b/KindAnimal/Pingouin.java
+new file mode 100644
+index 0000000..0d158ac
+--- /dev/null
++++ b/KindAnimal/Pingouin.java
+@@ -0,0 +1,37 @@
++package KindAnimal;
++
++import animal.oiseau.Oiseau;
++import animal.properties.properties;
++
++public class Pingouin {
++
++    public boolean isPingouin() {
++        if (propertyIsTrue()
++                && Oiseau.isOiseau(Oiseau.reponse_est_oiseau, Oiseau.est_oiseau)
++                && !properties.vole(properties.reponse_vole,properties.vole)
++                && properties.nage(properties.reponse_nage, properties.nage)
++                && properties.estNoirEtBlanc(properties.reponse_est_noir_et_blanc, properties.est_noir_et_blanc)) {
++            return true;
++        }
++        return false;
++    }
++
++    public boolean propertyIsTrue() {
++        System.out.println("********** Aninal est Pingouin? **********");
++        if ((Oiseau.reponse_est_oiseau && !Oiseau.est_oiseau)
++                || (properties.reponse_vole && properties.vole)
++                || (properties.reponse_nage && !properties.nage)
++                || (properties.reponse_est_noir_et_blanc && !properties.est_noir_et_blanc)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Aninal est Pingouin?");
++        boolean isPingouin;
++        Pingouin pingouin = new Pingouin();
++        isPingouin = pingouin.isPingouin();
++        System.out.println("Pingouin is " + isPingouin);
++    }
++}
+diff --git a/KindAnimal/Tigre.java b/KindAnimal/Tigre.java
+new file mode 100644
+index 0000000..c1e0203
+--- /dev/null
++++ b/KindAnimal/Tigre.java
+@@ -0,0 +1,40 @@
++package KindAnimal;
++
++import animal.carnivore.Carnivore;
++import animal.mammifere.Mammifere;
++import animal.properties.properties;
++
++public class Tigre {
++
++    public boolean isTigre() {
++        if (propertyIsTrue()
++                && Mammifere.isMammifere(Mammifere.reponse_est_mammifere, Mammifere.est_mammifere)
++                && Carnivore.isCarnivore(Carnivore.reponse_est_carnivore, Carnivore.est_carnivore)
++                && properties.aCouleurBrune(properties.reponse_a_couleur_brune, properties.a_couleur_brune)
++                && properties.aRaiesNoires(properties.reponse_a_raise_noire, properties.a_raise_noire)
++            ) {
++            return true;
++        }
++        return false;
++    }
++
++    public boolean propertyIsTrue() {
++        System.out.println("********** Aninal est Tigre? **********");
++        if ((Mammifere.reponse_est_mammifere && !Mammifere.est_mammifere)
++                || (Carnivore.reponse_est_carnivore && !Carnivore.est_carnivore)
++                || (properties.reponse_a_couleur_brune && !properties.a_couleur_brune)
++                || (properties.reponse_a_raise_noire && !properties.a_raise_noire)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Aninal est Tigre?");
++        boolean isTigre;
++        Tigre tigre = new Tigre();
++        isTigre = tigre.isTigre();
++        System.out.println("Tigre is " + isTigre);
++
++    }
++}
+diff --git a/KindAnimal/Zebre.java b/KindAnimal/Zebre.java
+new file mode 100644
+index 0000000..dd9522e
+--- /dev/null
++++ b/KindAnimal/Zebre.java
+@@ -0,0 +1,34 @@
++package KindAnimal;
++
++import animal.mammifere.Ongule;
++import animal.properties.properties;
++
++public class Zebre {
++
++    public boolean isZebre() {
++        if (propertyIsTrue() 
++                && Ongule.isOngule(Ongule.reponse_est_ongule, Ongule.est_ongule)
++                && properties.aRaiesNoires(properties.reponse_a_raise_noire, properties.a_raise_noire)) {
++            return true;
++        }
++        return false;
++    }
++
++    public boolean propertyIsTrue() {
++        System.out.println("********** Aninal est Zebre? **********");
++        if ((Ongule.reponse_est_ongule && !Ongule.est_ongule)
++                || (properties.reponse_a_raise_noire && !properties.a_raise_noire)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Aninal est Zebre?");
++        boolean isZebre;
++        Zebre zebre = new Zebre();
++        isZebre = zebre.isZebre();
++        System.out.println("Zebre is " + isZebre);
++
++    }
++}
+diff --git a/KindAnimal/main.java b/KindAnimal/main.java
+new file mode 100644
+index 0000000..6d5c2f1
+--- /dev/null
++++ b/KindAnimal/main.java
+@@ -0,0 +1,65 @@
++/*
++ * To change this template, choose Tools | Templates
++ * and open the template in the editor.
++ */
++package KindAnimal;
++
++/**
++ *
++ * @author macbookpro
++ */
++public class main {
++
++    public static void main(String[] args) {
++        Aigle aigle = new Aigle();
++        Autruche autruche = new Autruche();
++        Girafe girafe = new Girafe();
++        Guepard guepard = new Guepard();
++        Pingouin pingouin = new Pingouin();
++        Tigre tigre = new Tigre();
++        Zebre zebre = new Zebre();
++        if (guepard.isGepard()) {
++            System.out.println("Animal est Gepard");
++        } else if (tigre.isTigre()) {
++            System.out.println("Animal est Tigre");
++        } else if (girafe.isGirafe()) {
++            System.out.println("Animal est Girafe");
++        } else if (zebre.isZebre()) {
++            System.out.println("Animal est Zebre");
++        } else if (autruche.isAutruche()) {
++            System.out.println("Animal est Autruche");
++        } else if (pingouin.isPingouin()) {
++            System.out.println("Animal est Pingouin");
++        } else if (aigle.isAigle()) {
++            System.out.println("Animal est Aigle");
++        } else {
++            System.out.println("No in fait");
++        }
++    }
++    public static void main() {
++        Aigle aigle = new Aigle();
++        Autruche autruche = new Autruche();
++        Girafe girafe = new Girafe();
++        Guepard guepard = new Guepard();
++        Pingouin pingouin = new Pingouin();
++        Tigre tigre = new Tigre();
++        Zebre zebre = new Zebre();
++        if (guepard.isGepard()) {
++            System.out.println("Animal est Gepard");
++        } else if (tigre.isTigre()) {
++            System.out.println("Animal est Tigre");
++        } else if (girafe.isGirafe()) {
++            System.out.println("Animal est Girafe");
++        } else if (zebre.isZebre()) {
++            System.out.println("Animal est Zebre");
++        } else if (autruche.isAutruche()) {
++            System.out.println("Animal est Autruche");
++        } else if (pingouin.isPingouin()) {
++            System.out.println("Animal est Pingouin");
++        } else if (aigle.isAigle()) {
++            System.out.println("Animal est Aigle");
++        } else {
++            System.out.println("No in fait");
++        }
++    }
++}
+diff --git a/animal/Animal.java b/animal/Animal.java
+new file mode 100644
+index 0000000..ea9aa22
+--- /dev/null
++++ b/animal/Animal.java
+@@ -0,0 +1,13 @@
++/*
++ * To change this template, choose Tools | Templates
++ * and open the template in the editor.
++ */
++package animal;
++
++/**
++ *
++ * @author macbookpro
++ */
++public interface Animal {
++    
++}
+diff --git a/animal/carnivore/Carnivore.java b/animal/carnivore/Carnivore.java
+new file mode 100644
+index 0000000..2e34343
+--- /dev/null
++++ b/animal/carnivore/Carnivore.java
+@@ -0,0 +1,47 @@
++package animal.carnivore;
++
++import animal.Animal;
++import animal.properties.properties;
++
++public class Carnivore implements Animal {
++
++    public static boolean reponse_est_carnivore = false;
++    public static boolean est_carnivore = false;
++
++    public static boolean isCarnivore(boolean b1 , boolean b2) {
++        if(b1 && b2){
++            return true;
++        }else if(b1 && !b2){
++            return false;
++        }
++        reponse_est_carnivore = true;
++        if (propertyIsTrue()
++                && (properties.mangerViande(properties.reponse_manger_viande, properties.manger_viande)
++                || (properties.aDentPointues(properties.reponse_a_dent_pointues, properties.a_dent_pointues)
++                && properties.aGriffes(properties.reponse_a_griffes, properties.a_griffes)
++                && properties.aYeuxVersAvant(properties.reponse_a_yeux_vers_avant, properties.a_yeux_vers_avant)))) {
++            est_carnivore = true;
++            return true;
++        }
++        return false;
++    }
++
++    public static boolean propertyIsTrue() {
++         System.out.println("----------> Animal est Carnivore?");
++        if ((properties.reponse_manger_viande && !properties.manger_viande)
++                || (properties.reponse_a_dent_pointues && !properties.a_dent_pointues)
++                || (properties.reponse_a_yeux_vers_avant && !properties.a_yeux_vers_avant)
++                || (properties.reponse_a_griffes && !properties.a_griffes)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Animal est Carnivore?");
++        boolean isCarnivore;
++//        isCarnivore = Carnivore.isCarnivore();
++//        System.out.println(isCarnivore);
++
++    }
++}
+diff --git a/animal/mammifere/Mammifere.java b/animal/mammifere/Mammifere.java
+new file mode 100644
+index 0000000..32a5c53
+--- /dev/null
++++ b/animal/mammifere/Mammifere.java
+@@ -0,0 +1,43 @@
++package animal.mammifere;
++
++import animal.Animal;
++import animal.properties.properties;
++
++public class Mammifere implements Animal {
++
++    public static boolean reponse_est_mammifere = false;
++    public static boolean est_mammifere = false;
++
++    public static boolean isMammifere(boolean b1, boolean b2) {
++        if(b1 && b2){
++            return true;
++        }else if(b1 && !b2){
++            return false;
++        }
++        reponse_est_mammifere = true;
++        if (propertyIsTrue()
++                && (properties.aPoils(properties.reponse_a_poils, properties.a_poils)
++                || properties.donneLait(properties.reponse_donne_lait, properties.donne_lait))) {
++            est_mammifere = true;
++            return true;
++        }
++        return false;
++    }
++
++    public static boolean propertyIsTrue() {
++         System.out.println("----------> Animal est Mammifere?");
++        if ((properties.reponse_a_poils && !properties.a_poils)
++                || (properties.reponse_donne_lait && !properties.donne_lait)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Animal est Mamminfere?");
++        boolean isMammifere;
++//        isMammifere = Mammifere.isMammifere();
++//        System.out.println(isMammifere);
++
++    }
++}
+diff --git a/animal/mammifere/Ongule.java b/animal/mammifere/Ongule.java
+new file mode 100644
+index 0000000..44ddfc6
+--- /dev/null
++++ b/animal/mammifere/Ongule.java
+@@ -0,0 +1,45 @@
++package animal.mammifere;
++
++import animal.carnivore.Carnivore;
++import animal.properties.properties;
++
++public class Ongule {
++
++    public static boolean reponse_est_ongule = false;
++    public static boolean est_ongule = false;
++
++    public static boolean isOngule(boolean b1, boolean b2) {
++        if(b1 && b2){
++            return true;
++        }else if(b1 && !b2){
++            return false;
++        }
++        reponse_est_ongule = true;
++        if (propertyIsTrue()
++                && Mammifere.isMammifere(Mammifere.reponse_est_mammifere, Mammifere.est_mammifere)
++                && (properties.aSabots(properties.reponse_a_sabots, properties.a_sabots)
++                || Carnivore.isCarnivore(Carnivore.reponse_est_carnivore, !Carnivore.est_carnivore))) {
++            est_ongule = true;
++            return true;
++        }
++        return false;
++    }
++
++    public static boolean propertyIsTrue() {
++         System.out.println("----------> Animal est Ongule");
++        if ((Mammifere.reponse_est_mammifere && !Mammifere.est_mammifere)
++                || (Carnivore.reponse_est_carnivore && Carnivore.est_carnivore)
++                || (properties.reponse_a_sabots && !properties.a_sabots)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Animal est Ongule?");
++        boolean isOngule;
++//        isOngule = Ongule.isOngule();
++//        System.out.println("Ongule is " + isOngule);
++
++    }
++}
+diff --git a/animal/oiseau/Oiseau.java b/animal/oiseau/Oiseau.java
+new file mode 100644
+index 0000000..9d72b99
+--- /dev/null
++++ b/animal/oiseau/Oiseau.java
+@@ -0,0 +1,47 @@
++package animal.oiseau;
++
++import animal.Animal;
++import animal.properties.properties;
++
++public class Oiseau implements Animal {
++
++    public static boolean reponse_est_oiseau = false;
++    public static boolean est_oiseau = false;
++
++    ;
++    
++    public static boolean isOiseau(boolean b1 , boolean b2) {
++        if(b1 && b2){
++            return true;
++        }else if(b1 && !b2){
++            return false;
++        }
++        reponse_est_oiseau = true;
++
++        if (propertyIsTrue() &&
++            (properties.aPlumes(properties.reponse_a_plumes, properties.a_plumes)
++                || (properties.vole(properties.reponse_vole, properties.vole)
++                && properties.pondsOeufs(properties.reponse_ponds_oeufs, properties.ponds_oeufs)))) {
++            est_oiseau = true;
++            return true;
++        }
++        return false;
++    }
++
++    public static boolean propertyIsTrue() {
++        System.out.println("----------> Animal est Oiseau?");
++        if ((properties.reponse_a_plumes && !properties.a_plumes)
++                || (properties.reponse_vole && !properties.vole)
++                || (properties.reponse_ponds_oeufs && !properties.ponds_oeufs)) {
++            return false;
++        }
++        return true;
++    }
++
++    public static void main(String[] args) {
++        System.out.println("Animal est Oiseau?");
++        boolean isOiseau;
++//        isOiseau = Oiseau.isOiseau();
++//        System.out.println(isOiseau);
++    }
++}
+diff --git a/animal/properties/properties.java b/animal/properties/properties.java
+new file mode 100644
+index 0000000..56986e6
+--- /dev/null
++++ b/animal/properties/properties.java
+@@ -0,0 +1,240 @@
++package animal.properties;
++
++import question.question;
++
++public class properties {
++
++    /* Animal a poils */
++    public static boolean reponse_a_poils = false;
++    public static boolean a_poils = false;
++
++    public static boolean aPoils(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_poils = true;
++        return a_poils = question(question.question("Animal a poils?"));
++    }
++    /* Animal donne lait */
++    public static boolean reponse_donne_lait = false;
++    public static boolean donne_lait = false;
++
++    public static boolean donneLait(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_donne_lait = true;
++        return donne_lait = question(question.question("Animal donne lait?"));
++    }
++
++    /* Animal a sabots */
++    public static boolean reponse_a_sabots = false;
++    public static boolean a_sabots = false;
++
++    public static boolean aSabots(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_sabots = true;
++        return a_sabots = question(question.question("Animal a sabots?"));
++    }
++    /* Animal manger viande */
++    public static boolean reponse_manger_viande = false;
++    public static boolean manger_viande = false;
++
++    public static boolean mangerViande(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_manger_viande = true;
++        return manger_viande = question(question.question("Animal manger Viande?"));
++    }
++    /* Animal a dent pointues */
++    public static boolean reponse_a_dent_pointues = false;
++    public static boolean a_dent_pointues = false;
++
++    public static boolean aDentPointues(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_dent_pointues = true;
++        return a_dent_pointues = question(question.question("Animal a dent pointues?"));
++    }
++    /* Animal a griffes */
++    public static boolean reponse_a_griffes = false;
++    public static boolean a_griffes = false;
++
++    public static boolean aGriffes(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_griffes = true;
++        return a_griffes = question(question.question("Animal a griffes?"));
++    }
++    /* Animal a griffes */
++    public static boolean reponse_a_yeux_vers_avant = false;
++    public static boolean a_yeux_vers_avant = false;
++
++    public static boolean aYeuxVersAvant(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_yeux_vers_avant = true;
++        return a_yeux_vers_avant = question(question.question("Animal a yeux vers avant?"));
++    }
++
++    /* Animal a plumes*/
++    public static boolean reponse_a_plumes = false;
++    public static boolean a_plumes = false;
++
++    public static boolean aPlumes(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_plumes = true;
++        return a_plumes = question(question.question("Animal a plumes?"));
++    }
++    /* Animal vole */
++    public static boolean reponse_vole = false;
++    public static boolean vole = false;
++
++    public static boolean vole(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_vole = true;
++        return vole = question(question.question("Animal vole?"));
++    }
++    /* Animal ponds oeufs */
++    public static boolean reponse_ponds_oeufs = false;
++    public static boolean ponds_oeufs = false;
++
++    public static boolean pondsOeufs(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_ponds_oeufs = true;
++        return ponds_oeufs = question(question.question("Animal ponds oeufs"));
++    }
++    /**********************************************************************************/
++    /* Animal a raise noire */
++    public static boolean reponse_a_raise_noire = false;
++    public static boolean a_raise_noire = false;
++
++    public static boolean aRaiesNoires(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_raise_noire = true;
++        return a_raise_noire = question(question.question("Animal a raies noires?"));
++    }
++
++    /* Animal a raise noire */
++    public static boolean reponse_a_couleur_brune = false;
++    public static boolean a_couleur_brune = false;
++
++    public static boolean aCouleurBrune(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_couleur_brune = true;
++        return a_couleur_brune = question(question.question("Animal a couleur brune?"));
++    }
++    /* Animal a taches sombres*/
++    public static boolean reponse_a_taches_sombres = false;
++    public static boolean a_taches_sombres = false;
++
++    public static boolean aTachesSombres(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_taches_sombres = true;
++        return a_taches_sombres = question(question.question("Animal a taches sombres?"));
++    }
++    /* Animal a long cou*/
++    public static boolean reponse_a_long_cou = false;
++    public static boolean a_long_cou = false;
++
++    public static boolean aLongCou(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_long_cou = true;
++        return a_long_cou = question(question.question("Animal a long cou?"));
++    }
++
++    /* Animal a longues pattes */
++    public static boolean reponse_a_longues_pattes = false;
++    public static boolean a_longues_pattes = false;
++
++    public static boolean aLonguesPattes(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_a_longues_pattes = true;
++        return a_longues_pattes = question(question.question("Animal a longues pattes?"));
++    }
++    /* Animal nage*/
++    public static boolean reponse_nage = false;
++    public static boolean nage = false;
++
++    public static boolean nage(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_nage = true;
++        return nage = question(question.question("Animal nage?"));
++    }
++    /* Animal est noir et blanc */
++    public static boolean reponse_est_noir_et_blanc = false;
++    public static boolean est_noir_et_blanc = false;
++
++    public static boolean estNoirEtBlanc(boolean b1, boolean b2) {
++        if (b1 && b2) {
++            return true;
++        } else if (b1 && !b2) {
++            return false;
++        }
++        reponse_est_noir_et_blanc = true;
++        return est_noir_et_blanc = question(question.question("Animal est noir et blanc?"));
++    }
++
++    public static boolean question(String isOui) {
++        if (isOui.equals("o")) {
++            return true;
++        }
++        return false;
++    }
++}
+diff --git a/gui/Animal.form b/gui/Animal.form
+new file mode 100644
+index 0000000..ac4bf91
+--- /dev/null
++++ b/gui/Animal.form
+@@ -0,0 +1,123 @@
++<?xml version="1.1" encoding="UTF-8" ?>
++
++<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
++  <NonVisualComponents>
++    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
++      <Properties>
++        <Property name="text" type="java.lang.String" value="jCheckBox1"/>
++      </Properties>
++    </Component>
++    <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
++
++      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
++        <Property name="useNullLayout" type="boolean" value="true"/>
++      </Layout>
++    </Container>
++  </NonVisualComponents>
++  <Properties>
++    <Property name="defaultCloseOperation" type="int" value="3"/>
++  </Properties>
++  <SyntheticProperties>
++    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
++  </SyntheticProperties>
++  <AuxValues>
++    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
++    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
++    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
++    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
++    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
++    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="2"/>
++    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
++    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
++    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
++  </AuxValues>
++
++  <Layout>
++    <DimensionLayout dim="0">
++      <Group type="103" groupAlignment="0" attributes="0">
++          <Component id="jScrollPane1" alignment="0" pref="550" max="32767" attributes="0"/>
++          <Group type="102" alignment="0" attributes="0">
++              <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
++              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
++              <EmptySpace max="-2" attributes="0"/>
++              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
++              <EmptySpace pref="39" max="32767" attributes="0"/>
++              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
++              <EmptySpace type="unrelated" max="-2" attributes="0"/>
++              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
++              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
++          </Group>
++      </Group>
++    </DimensionLayout>
++    <DimensionLayout dim="1">
++      <Group type="103" groupAlignment="0" attributes="0">
++          <Group type="102" alignment="0" attributes="0">
++              <Component id="jScrollPane1" min="-2" pref="356" max="-2" attributes="0"/>
++              <EmptySpace type="unrelated" max="-2" attributes="0"/>
++              <Group type="103" groupAlignment="3" attributes="0">
++                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
++                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
++                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
++                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
++              </Group>
++              <EmptySpace max="32767" attributes="0"/>
++          </Group>
++      </Group>
++    </DimensionLayout>
++  </Layout>
++  <SubComponents>
++    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
++      <AuxValues>
++        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
++      </AuxValues>
++
++      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
++      <SubComponents>
++        <Component class="javax.swing.JTextArea" name="jTextArea1">
++          <Properties>
++            <Property name="columns" type="int" value="20"/>
++            <Property name="editable" type="boolean" value="false"/>
++            <Property name="rows" type="int" value="5"/>
++            <Property name="enabled" type="boolean" value="false"/>
++            <Property name="requestFocusEnabled" type="boolean" value="false"/>
++            <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
++          </Properties>
++        </Component>
++      </SubComponents>
++    </Container>
++    <Component class="javax.swing.JButton" name="jButton1">
++      <Properties>
++        <Property name="text" type="java.lang.String" value="Oui"/>
++      </Properties>
++      <Events>
++        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
++      </Events>
++    </Component>
++    <Component class="javax.swing.JButton" name="jButton2">
++      <Properties>
++        <Property name="text" type="java.lang.String" value="Non"/>
++      </Properties>
++      <Events>
++        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
++      </Events>
++    </Component>
++    <Component class="javax.swing.JButton" name="jButton3">
++      <Properties>
++        <Property name="text" type="java.lang.String" value="Play"/>
++        <Property name="focusPainted" type="boolean" value="false"/>
++      </Properties>
++      <Events>
++        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
++      </Events>
++    </Component>
++    <Component class="javax.swing.JButton" name="jButton4">
++      <Properties>
++        <Property name="text" type="java.lang.String" value="Stop"/>
++        <Property name="focusPainted" type="boolean" value="false"/>
++      </Properties>
++      <Events>
++        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
++      </Events>
++    </Component>
++  </SubComponents>
++</Form>
+diff --git a/gui/Animal.java b/gui/Animal.java
+new file mode 100644
+index 0000000..1905b3a
+--- /dev/null
++++ b/gui/Animal.java
+@@ -0,0 +1,169 @@
++/*
++ * To change this template, choose Tools | Templates
++ * and open the template in the editor.
++ */
++
++/*
++ * Animal.java
++ *
++ * Created on Jan 15, 2013, 7:30:18 PM
++ */
++package gui;
++
++import KindAnimal.main;
++
++/**
++ *
++ * @author macbookpro
++ */
++public class Animal extends javax.swing.JFrame {
++
++    /** Creates new form Animal */
++//    public Animal() {
++//        initComponents();
++//    }
++    /** This method is called from within the constructor to
++     * initialize the form.
++     * WARNING: Do NOT modify this code. The content of this method is
++     * always regenerated by the Form Editor.
++     */
++    @SuppressWarnings("unchecked")
++    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
++    private void initComponents() {
++
++        jCheckBox1 = new javax.swing.JCheckBox();
++        jPopupMenu1 = new javax.swing.JPopupMenu();
++        jScrollPane1 = new javax.swing.JScrollPane();
++        jTextArea1 = new javax.swing.JTextArea();
++        jButton1 = new javax.swing.JButton();
++        jButton2 = new javax.swing.JButton();
++        jButton3 = new javax.swing.JButton();
++        jButton4 = new javax.swing.JButton();
++
++        jCheckBox1.setText("jCheckBox1");
++
++        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
++
++        jTextArea1.setColumns(20);
++        jTextArea1.setEditable(false);
++        jTextArea1.setRows(5);
++        jTextArea1.setEnabled(false);
++        jTextArea1.setRequestFocusEnabled(false);
++        jTextArea1.setVerifyInputWhenFocusTarget(false);
++        jScrollPane1.setViewportView(jTextArea1);
++
++        jButton1.setText("Oui");
++        jButton1.addActionListener(new java.awt.event.ActionListener() {
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton1ActionPerformed(evt);
++            }
++        });
++
++        jButton2.setText("Non");
++        jButton2.addActionListener(new java.awt.event.ActionListener() {
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton2ActionPerformed(evt);
++            }
++        });
++
++        jButton3.setText("Play");
++        jButton3.setFocusPainted(false);
++        jButton3.addActionListener(new java.awt.event.ActionListener() {
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton3ActionPerformed(evt);
++            }
++        });
++
++        jButton4.setText("Stop");
++        jButton4.setFocusPainted(false);
++        jButton4.addActionListener(new java.awt.event.ActionListener() {
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton4ActionPerformed(evt);
++            }
++        });
++
++        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
++        getContentPane().setLayout(layout);
++        layout.setHorizontalGroup(
++            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
++            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
++            .add(layout.createSequentialGroup()
++                .add(199, 199, 199)
++                .add(jButton1)
++                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
++                .add(jButton2)
++                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 39, Short.MAX_VALUE)
++                .add(jButton3)
++                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
++                .add(jButton4)
++                .add(6, 6, 6))
++        );
++        layout.setVerticalGroup(
++            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
++            .add(layout.createSequentialGroup()
++                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 356, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
++                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
++                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
++                    .add(jButton4)
++                    .add(jButton3)
++                    .add(jButton1)
++                    .add(jButton2))
++                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
++        );
++
++        pack();
++    }// </editor-fold>//GEN-END:initComponents
++
++    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
++        // TODO add your handling code here:
++        String action = evt.getActionCommand();
++        if (action.equals("Non")) {
++            System.out.println("n");
++        }
++    }//GEN-LAST:event_jButton2ActionPerformed
++
++    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
++        // TODO add your handling code here:
++        String action = evt.getActionCommand();
++        if (action.equals("Play")) {
++            main.main();
++        }
++    }//GEN-LAST:event_jButton3ActionPerformed
++
++    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
++        // TODO add your handling code here:
++        String action = evt.getActionCommand();
++        if (action.equals("Stop")) {
++        }
++    }//GEN-LAST:event_jButton4ActionPerformed
++
++    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
++        String action = evt.getActionCommand();
++        if (action.equals("Oui")) {
++            System.out.println("o");
++        }
++        // TODO add your handling code here:
++    }//GEN-LAST:event_jButton1ActionPerformed
++
++    /**
++     * @param args the command line arguments
++     */
++    public static void main(String args[]) {
++        java.awt.EventQueue.invokeLater(new Runnable() {
++
++            public void run() {
++                new Animal().setVisible(true);
++            }
++        });
++    }
++    // Variables declaration - do not modify//GEN-BEGIN:variables
++    private javax.swing.JButton jButton1;
++    private javax.swing.JButton jButton2;
++    private javax.swing.JButton jButton3;
++    private javax.swing.JButton jButton4;
++    private javax.swing.JCheckBox jCheckBox1;
++    private javax.swing.JPopupMenu jPopupMenu1;
++    private javax.swing.JScrollPane jScrollPane1;
++    private javax.swing.JTextArea jTextArea1;
++    // End of variables declaration//GEN-END:variables
++}
+diff --git a/gui/AnimalGame.form b/gui/AnimalGame.form
+new file mode 100644
+index 0000000..d15a3e7
+--- /dev/null
++++ b/gui/AnimalGame.form
+@@ -0,0 +1,28 @@
++<?xml version="1.1" encoding="UTF-8" ?>
++
++<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
++  <AuxValues>
++    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
++    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
++    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
++    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
++    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
++    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="2"/>
++    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
++    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
++    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
++  </AuxValues>
++
++  <Layout>
++    <DimensionLayout dim="0">
++      <Group type="103" groupAlignment="0" attributes="0">
++          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
++      </Group>
++    </DimensionLayout>
++    <DimensionLayout dim="1">
++      <Group type="103" groupAlignment="0" attributes="0">
++          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
++      </Group>
++    </DimensionLayout>
++  </Layout>
++</Form>
+diff --git a/gui/AnimalGame.java b/gui/AnimalGame.java
+new file mode 100644
+index 0000000..eadc759
+--- /dev/null
++++ b/gui/AnimalGame.java
+@@ -0,0 +1,46 @@
++/*
++ * To change this template, choose Tools | Templates
++ * and open the template in the editor.
++ */
++
++/*
++ * AnimalGame.java
++ *
++ * Created on Jan 15, 2013, 7:30:49 PM
++ */
++package gui;
++
++/**
++ *
++ * @author macbookpro
++ */
++public class AnimalGame extends javax.swing.JPanel {
++
++    /** Creates new form AnimalGame */
++    public AnimalGame() {
++        initComponents();
++    }
++
++    /** This method is called from within the constructor to
++     * initialize the form.
++     * WARNING: Do NOT modify this code. The content of this method is
++     * always regenerated by the Form Editor.
++     */
++    @SuppressWarnings("unchecked")
++    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
++    private void initComponents() {
++
++        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
++        this.setLayout(layout);
++        layout.setHorizontalGroup(
++            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
++            .add(0, 400, Short.MAX_VALUE)
++        );
++        layout.setVerticalGroup(
++            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
++            .add(0, 300, Short.MAX_VALUE)
++        );
++    }// </editor-fold>//GEN-END:initComponents
++    // Variables declaration - do not modify//GEN-BEGIN:variables
++    // End of variables declaration//GEN-END:variables
++}
+diff --git a/gui/Interface.java b/gui/Interface.java
+new file mode 100644
+index 0000000..c8b37c8
+--- /dev/null
++++ b/gui/Interface.java
+@@ -0,0 +1,188 @@
++/*
++ * To change this template, choose Tools | Templates
++ * and open the template in the editor.
++ */
++package gui;
++/*
++ * To change this template, choose Tools | Templates
++ * and open the template in the editor.
++ */
++
++/*
++ * Animal.java
++ *
++ * Created on Jan 15, 2013, 7:30:18 PM
++ */
++
++import KindAnimal.main;
++import java.awt.event.ActionEvent;
++
++/**
++ *
++ * @author macbookpro
++ */
++public class Interface extends javax.swing.JFrame {
++
++    /** Creates new form Animal */
++    public Interface() {
++        initComponents();
++    }
++    /** This method is called from within the constructor to
++     * initialize the form.
++     * WARNING: Do NOT modify this code. The content of this method is
++     * always regenerated by the Form Editor.
++     */
++    @SuppressWarnings("unchecked")
++    // <editor-fold defaultstate="collapsed" desc="Generated Code">
++    private void initComponents() {
++
++        jCheckBox1 = new javax.swing.JCheckBox();
++        jPopupMenu1 = new javax.swing.JPopupMenu();
++        jScrollPane1 = new javax.swing.JScrollPane();
++        jTextArea1 = new javax.swing.JTextArea();
++        jButton1 = new javax.swing.JButton();
++        jButton2 = new javax.swing.JButton();
++        jButton3 = new javax.swing.JButton();
++        jButton4 = new javax.swing.JButton();
++
++        jCheckBox1.setText("jCheckBox1");
++
++        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
++
++        jTextArea1.setColumns(20);
++        jTextArea1.setEditable(false);
++        jTextArea1.setRows(5);
++        jTextArea1.setEnabled(false);
++        jTextArea1.setRequestFocusEnabled(false);
++        jTextArea1.setVerifyInputWhenFocusTarget(false);
++        jScrollPane1.setViewportView(jTextArea1);
++
++        jButton1.setText("Oui");
++        jButton1.addActionListener(new java.awt.event.ActionListener() {
++            @Override
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton1ActionPerformed(evt);
++            }
++        });
++
++        jButton2.setText("Non");
++        jButton2.addActionListener(new java.awt.event.ActionListener() {
++            @Override
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton1ActionPerformed(evt);
++            }
++        });
++
++        jButton3.setText("Play");
++        jButton3.setFocusPainted(false);
++        jButton3.addActionListener(new java.awt.event.ActionListener() {
++            @Override
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton3ActionPerformed(evt);
++            }
++        });
++
++        jButton4.setText("Stop");
++        jButton4.setFocusPainted(false);
++        jButton4.addActionListener(new java.awt.event.ActionListener() {
++            @Override
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton4ActionPerformed(evt);
++            }
++        });
++
++        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
++        getContentPane().setLayout(layout);
++        layout.setHorizontalGroup(
++            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
++            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
++            .add(layout.createSequentialGroup()
++                .add(199, 199, 199)
++                .add(jButton1)
++                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
++                .add(jButton2)
++                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 39, Short.MAX_VALUE)
++                .add(jButton3)
++                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
++                .add(jButton4)
++                .add(6, 6, 6))
++        );
++        layout.setVerticalGroup(
++            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
++            .add(layout.createSequentialGroup()
++                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 356, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
++                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
++                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
++                    .add(jButton4)
++                    .add(jButton3)
++                    .add(jButton1)
++                    .add(jButton2))
++                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
++        );
++
++        pack();
++    }// </editor-fold>
++
++    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
++        // TODO add your handling code here:
++        String action = evt.getActionCommand();
++        if (action.equals("Non")) {
++            System.out.println("n");
++        }
++    }
++
++    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
++        // TODO add your handling code here:
++        String action = evt.getActionCommand();
++        if (action.equals("Play")) {
++            main.main();
++        }
++    }
++
++    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
++        // TODO add your handling code here:
++        String action = evt.getActionCommand();
++        if (action.equals("Stop")) {
++        }
++    }
++
++    public String jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
++        String action = evt.getActionCommand();
++        String ans= "n";
++        if (action.equals("Oui")) {
++            ans = "o";
++        }else{
++            ans = "n";
++        }
++        return ans;
++        // TODO add your handling code here:
++    }
++
++    /**
++     * @param args the command line arguments
++     */
++    public static void main(String args[]) {
++        java.awt.EventQueue.invokeLater(new Runnable() {
++
++            @Override
++            public void run() {
++                new Interface().setVisible(true);
++            }
++        });
++    }
++    // Variables declaration - do not modify
++    private javax.swing.JButton jButton1;
++    private javax.swing.JButton jButton2;
++    private javax.swing.JButton jButton3;
++    private javax.swing.JButton jButton4;
++    private javax.swing.JCheckBox jCheckBox1;
++    private javax.swing.JPopupMenu jPopupMenu1;
++    private javax.swing.JScrollPane jScrollPane1;
++    private javax.swing.JTextArea jTextArea1;
++    // End of variables declaration
++
++    public String jButtonActionPerformeds(ActionEvent evt) {
++        return jButton1ActionPerformed(evt);
++    }
++}
++
+diff --git a/question/question.java b/question/question.java
+new file mode 100644
+index 0000000..722efc0
+--- /dev/null
++++ b/question/question.java
+@@ -0,0 +1,37 @@
++package question;
++
++import gui.Interface;
++import java.awt.Button;
++import java.awt.event.ActionEvent;
++import java.util.Scanner;
++
++public class question {
++    
++    public static Scanner s1 = new Scanner(System.in);
++    
++//    public static String question(String question){
++//        System.out.println(question);
++//        return s1.nextLine();
++//    }
++    public static String question(String question){
++        System.out.println(question);
++        String s="n";
++        ActionEvent evt=null;
++        Interface inter = null;
++        addActionListener(new java.awt.event.ActionListener() {
++            @Override
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                jButton1ActionPerformed(evt);
++            }
++        });
++        s = jButtonActionPerformeds(evt);
++        return s;
++    }
++    public static boolean questionTT(boolean b1, boolean b2){
++        if(b1 & b2){
++            return true;
++        }else if(b1 && !b2){
++            return true;
++        }return false;
++    }
++}
+-- 
+1.7.8.3
+
